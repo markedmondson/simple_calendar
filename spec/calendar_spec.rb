@@ -31,6 +31,10 @@ describe SimpleCalendar::Calendar do
       expect(calendar.send(:attribute)).to eq(:start_time)
     end
 
+    it 'allows you to override the default sort attribute' do
+      expect(SimpleCalendar::Calendar.new(ViewContext.new, sort_attribute: :name).send(:sort_attribute)).to eq(:name)
+    end
+
     it 'allows you to override the default attribute' do
       expect(SimpleCalendar::Calendar.new(ViewContext.new, attribute: :starts_at).send(:attribute)).to eq(:starts_at)
     end

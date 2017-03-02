@@ -71,9 +71,13 @@ module SimpleCalendar
         options.fetch(:start_date_param, :start_date).to_sym
       end
 
+      def sort_attribute
+        options.fetch(:sort_attribute, attribute).to_sym
+      end
+
       def sorted_events
         @sorted_events ||= begin
-                             events = options.fetch(:events, []).reject { |e| e.send(attribute).nil? }.sort_by(&attribute)
+                             events = options.fetch(:events, []).reject { |e| e.send(sort_attribute).nil? }.sort_by(&sort_attribute)
                              group_events_by_date(events)
                            end
       end
